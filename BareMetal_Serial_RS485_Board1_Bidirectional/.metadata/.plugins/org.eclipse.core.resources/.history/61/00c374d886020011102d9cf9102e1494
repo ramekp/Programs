@@ -1,0 +1,261 @@
+/***************************************************************************************
+ * File: main.c
+ * Target: STM32 NUCLEO‑G0B1RE (STM32G0B1)
+ * Peripherals:
+ *   - USART4 on PA0 (RX) / PA1 (TX), 115200 8N1 (configured by HAL)
+ *   - LED on PA5 (user LED LD4)
+ *
+ * Behavior:
+ *   - System clock: HSI16 with PLL → 64 MHz SYSCLK.
+ *   - On boot, sends "hi\r\n" once over USART4.
+ *   - Repeatedly transmits a fixed sequence of frames, one at a time:
+ *       "*0#\r\n", "*2#\r\n", "*4#\r\n", "*6#\r\n", "*8#\r\n"
+ *     After each transmission, it waits indefinitely for a valid incoming frame
+ *     of the form "*<digit>#", optionally followed by CR/LF in any order.
+ *   - The expected reply digits are {1, 3, 5, 7, 9} corresponding to each step.
+ *     Only when a valid and expected digit is received does it advance to next step.
+ *   - The LED on PA5 toggles every 500 ms regardless of UART waiting state.
+ *
+ * Framing on RX (accepted forms):
+ *   "*d#", "*d#\n", "*d#\r", "*d#\r\n" where d is '0'..'9'.
+ *
+ * Notes:
+ *   - Cooperative wait for UART bytes with short timeouts keeps LED heartbeat alive.
+ *   - No RTOS. HAL only.
+ ***************************************************************************************/
+
+#include "main.h"          // HAL and device headers
+#include <string.h>        // strlen
+#include <stdbool.h>       // bool, true, false
+
+/* Global UART handle for USART4 */
+UART_HandleTypeDef huart4;
+
+/*---------------------------------------------------------------------------------------
+ * Function: SystemClock_Config
+ * Purpose : Configure system clock to 64 MHz using HSI16 + PLL.
+ * Inputs  : None
+ * Returns : None
+ * Effects : Initializes RCC oscillators and bus clocks. Sets FLASH latency accordingly.
+ *--------------------------------------------------------------------------------------*/
+void SystemClock_Config(void) {
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};     // Zero-initialize oscillator config
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};     // Zero-initialize clock config
+
+  RCC_OscInitStruct.OscillatorType      = RCC_OSCILLATORTYPE_HSI;   // Use HSI source
+  RCC_OscInitStruct.HSIState            = RCC_HSI_ON;               // Enable HSI
+  RCC_OscInitStruct.HSIDiv              = RCC_HSI_DIV1;             // No HSI divider
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT; // Default trim
+  RCC_OscInitStruct.PLL.PLLState        = RCC_PLL_ON;               // Turn on PLL
+  RCC_OscInitStruct.PLL.PLLSource       = RCC_PLLSOURCE_HSI;        // PLL source = HSI
+  RCC_OscInitStruct.PLL.PLLM            = RCC_PLLM_DIV1;            // M divider = 1
+  RCC_OscInitStruct.PLL.PLLN            = 8;                        // N multiplier
+  RCC_OscInitStruct.PLL.PLLP            = RCC_PLLP_DIV2;            // P divider = 2
+  RCC_OscInitStruct.PLL.PLLR            = RCC_PLLR_DIV2;            // R divider = 2 → SYSCLK
+  RCC_OscInitStruct.PLL.PLLQ            = RCC_PLLQ_DIV2;            // Q divider = 2
+  HAL_RCC_OscConfig(&RCC_OscInitStruct);                            // Apply oscillator config
+
+  RCC_ClkInitStruct.ClockType      = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1; // Buses
+  RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK;       // SYSCLK from PLLR
+  RCC_ClkInitStruct.AHBCLKDivider  = RCC_SYSCLK_DIV1;               // HCLK = SYSCLK
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;                 // PCLK1 = HCLK
+  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);         // Apply bus clocks, set Flash latency
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: MX_USART4_UART_Init
+ * Purpose : Initialize USART4 at 115200 8N1, no flow control, blocking HAL mode.
+ * Inputs  : None
+ * Returns : None
+ * Notes   : PA0/PA1 pin mux must be set to AF for USART4 in MSP init (CubeMX).
+ *--------------------------------------------------------------------------------------*/
+static void MX_USART4_UART_Init(void) {
+  huart4.Instance            = USART4;                     // Peripheral instance
+  huart4.Init.BaudRate       = 115200;                     // 115200 bps
+  huart4.Init.WordLength     = UART_WORDLENGTH_8B;         // 8 data bits
+  huart4.Init.StopBits       = UART_STOPBITS_1;            // 1 stop bit
+  huart4.Init.Parity         = UART_PARITY_NONE;           // No parity
+  huart4.Init.Mode           = UART_MODE_TX_RX;            // TX and RX enabled
+  huart4.Init.HwFlowCtl      = UART_HWCONTROL_NONE;        // No RTS/CTS
+  huart4.Init.OverSampling   = UART_OVERSAMPLING_16;       // Oversampling x16
+  huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;// Disable 1-bit sampling
+  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; // No advanced features
+  HAL_UART_Init(&huart4);                                  // Apply UART config
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: MX_GPIO_Init
+ * Purpose : Initialize GPIO for LED (PA5) as push-pull output, low speed, no pull.
+ * Inputs  : None
+ * Returns : None
+ *--------------------------------------------------------------------------------------*/
+static void MX_GPIO_Init(void) {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};        // Zero-initialize GPIO config
+
+  __HAL_RCC_GPIOA_CLK_ENABLE();                  // Enable port A clock
+
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);  // Ensure LED starts OFF
+  GPIO_InitStruct.Pin   = GPIO_PIN_5;            // LED pin
+  GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;   // Push-pull output
+  GPIO_InitStruct.Pull  = GPIO_NOPULL;           // No pull-up/down
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;   // Low speed sufficient for LED
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);        // Init GPIOA with settings
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: led_task_500ms
+ * Purpose : Toggle LED (PA5) every 500 ms using HAL tick timing.
+ * Inputs  : None
+ * Returns : None
+ * Notes   : Non-blocking; should be called frequently (e.g., in main loop, while waiting).
+ *--------------------------------------------------------------------------------------*/
+static void led_task_500ms(void) {
+  static uint32_t last = 0;              // Last toggle timestamp (ms)
+  uint32_t now = HAL_GetTick();          // Current tick (ms from HAL systick)
+  if ((now - last) >= 500) {             // Check 500 ms elapsed
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5); // Toggle user LED
+    last = now;                          // Update last toggle time
+  }
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: uart_get_byte
+ * Purpose : Attempt to read one byte from UART with a short timeout, keeping LED alive.
+ * Inputs  : huart -> UART handle to read from
+ *           b     -> pointer to destination byte
+ * Returns : true if a byte was received; false on timeout or error.
+ * Notes   : Uses 10 ms timeout to avoid blocking LED task for long intervals.
+ *--------------------------------------------------------------------------------------*/
+static bool uart_get_byte(UART_HandleTypeDef *huart, uint8_t *b) {
+  if (HAL_UART_Receive(huart, b, 1, 10) == HAL_OK) { // Try receive 1 byte with 10 ms timeout
+    return true;                                     // Got a byte
+  }
+  led_task_500ms();                                  // Maintain LED heartbeat even on timeout
+  return false;                                      // No byte available yet
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: UART_WaitFor_Frame_StarDigitHash
+ * Purpose : Block cooperatively until a frame "*<digit>#", optional CR/LF, is received.
+ * Inputs  : huart      -> UART handle to read from
+ *           out_digit  -> pointer to store parsed digit (0..9) when frame is valid
+ * Returns : true always when a valid frame was parsed and digit stored in out_digit.
+ * Notes   : Accepts "*d#", "*d#\n", "*d#\r", "*d#\r\n". Any order for CR/LF is tolerated.
+ *           Keeps calling led_task_500ms() to maintain heartbeat while waiting.
+ *--------------------------------------------------------------------------------------*/
+static bool UART_WaitFor_Frame_StarDigitHash(UART_HandleTypeDef *huart, uint8_t *out_digit) {
+  enum { S_WAIT_STAR, S_GET_DIGIT, S_WAIT_HASH, S_EAT_EOL } state = S_WAIT_STAR; // Parser states
+  uint8_t ch = 0;                                     // Byte buffer
+
+  for (;;) {                                          // Run until a full frame is parsed
+    if (!uart_get_byte(huart, &ch)) {                 // Try to get a byte (non-blocking-ish)
+      continue;                                       // No byte yet; loop and keep LED alive
+    }
+
+    switch (state)                                    // Handle state machine
+    {
+      case S_WAIT_STAR:                               // Waiting for '*'
+        if (ch == '*') {                              // Found start of frame
+          state = S_GET_DIGIT;                        // Next expect a digit
+        }
+        break;
+
+      case S_GET_DIGIT:                               // Waiting for '0'..'9'
+        if (ch >= '0' && ch <= '9') {                 // Valid digit
+          *out_digit = (uint8_t)(ch - '0');           // Convert ASCII to numeric 0..9
+          state = S_WAIT_HASH;                        // Next expect '#'
+        }
+        else {                                        // Not a digit
+          state = S_WAIT_STAR;                        // Reset to look for new '*'
+          if (ch == '*') {                            // Immediate restart if current is '*'
+            state = S_GET_DIGIT;                      // Because it could be start of new frame
+          }
+        }
+        break;
+
+      case S_WAIT_HASH:                               // Waiting for '#'
+        if (ch == '#') {                              // Frame core complete
+          state = S_EAT_EOL;                          // Move to EOL consumption
+        }
+        else {                                        // Unexpected char
+          state = (ch == '*') ? S_GET_DIGIT : S_WAIT_STAR; // Either restart on '*' or wait
+        }
+        break;
+
+      case S_EAT_EOL:                                 // Optionally consume CR/LF
+    	HAL_Delay(100); // ----This delay is essential to ensure that communication is established correctly.
+        if (ch == '\r' || ch == '\n') {               // Got a line ending char
+          uint8_t c2;                                 // Temp to swallow one more char if present
+          HAL_UART_Receive(huart, &c2, 1, 0);         // Non-blocking attempt to read next (ignore result)
+        }
+        return true;                                  // Valid frame parsed; return to caller
+    }
+
+    led_task_500ms();                                 // Maintain LED heartbeat each loop
+  }
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: main
+ * Purpose : Entry point. Initializes HAL, clocks, GPIO, UART; sends welcome message;
+ *           runs the TX/RX sequence; toggles LED heartbeat.
+ *--------------------------------------------------------------------------------------*/
+int main(void) {
+  HAL_Init();                                                 // Initialize HAL and SysTick
+  SystemClock_Config();                                       // Configure clocks to 64 MHz
+  MX_GPIO_Init();                                             // Init LED GPIO
+  MX_USART4_UART_Init();                                      // Init USART4
+
+  /* Startup welcome message sent once after UART init */
+  static const char wel_msg[] = "WELCOME11111111\r\n";
+  HAL_UART_Transmit(&huart4, (uint8_t*)wel_msg, (uint16_t)strlen(wel_msg), 100U); // Send "hi\r\n" once
+
+  const char *tx_frames[]   = { "*0#\r\n", "*2#\r\n", "*4#\r\n", "*6#\r\n", "*8#\r\n" }; // Outgoing sequence
+  const uint8_t expect_digits[] = { 1, 3, 5, 7, 9 };                                     // Expected replies
+
+  uint8_t idx = 0;                                            // Current position in 0..4
+  bool pending_tx = true;                                     // If true, transmit current frame once
+
+  for (;;) {                                                  // Main loop
+    if (pending_tx) {                                         // If we need to send the next command
+      const char *s = tx_frames[idx];                         // Select current frame string
+      HAL_UART_Transmit(&huart4, (uint8_t*)s, (uint16_t)strlen(s), 20); // Transmit with short timeout
+      pending_tx = false;                                     // Lock until correct reply is received
+    }
+
+    uint8_t rx_digit = 0xFF;                                  // Placeholder for received digit
+    if (UART_WaitFor_Frame_StarDigitHash(&huart4, &rx_digit)) { // Wait for and parse a valid frame
+      if (rx_digit == expect_digits[idx]) {                   // Check if reply matches expected digit
+        idx = (uint8_t)((idx + 1) % 5);                       // Advance in sequence (wrap 0..4)
+        pending_tx = true;                                    // Allow next transmission
+      }
+    }
+
+    led_task_500ms();                                         // Keep LED heartbeat running
+  }
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: Error_Handler
+ * Purpose : Trap on unrecoverable errors. Fast blink LED to indicate fault.
+ * Inputs  : None
+ * Returns : None (infinite loop)
+ *--------------------------------------------------------------------------------------*/
+void Error_Handler(void) {
+  __disable_irq();                              // Globally disable interrupts
+  while (1) {                                   // Stay here forever
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);      // Blink LED rapidly
+    HAL_Delay(100);                             // 100 ms delay
+  }
+}
+
+/*---------------------------------------------------------------------------------------
+ * Function: assert_failed
+ * Purpose : Weak handler for full assert builds. Parameters are unused here.
+ *--------------------------------------------------------------------------------------*/
+#ifdef USE_FULL_ASSERT
+void assert_failed(uint8_t *file, uint32_t line) {
+  (void)file;
+  (void)line;
+}
+#endif

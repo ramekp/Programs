@@ -1,0 +1,285 @@
+/**
+ * @file main.c
+ * @brief STM32 FreeRTOS project that handles UART4 interrupt-based input,
+ *        echoes specific commands through UART2, and runs multiple RTOS tasks.
+ *
+ * UART4:
+ *   - Receives characters interrupt-driven
+ *   - Forms messages ending with '\n'
+ *   - Notifies SerialTask when a command is ready
+ *
+ * UART2:
+ *   - Used for debug output (115200 baud)
+ *
+ * Tasks:
+ *   - DefaultTask: Idle loop
+ *   - LEDTask: Reserved for LED-related controls
+ *   - SerialTask: Processes received UART commands
+ */
+
+#include "main.h"
+#include "cmsis_os.h"
+#include <string.h>
+
+/* ----------- UART receive globals ----------- */
+uint8_t rx4_byte;               // Single received byte
+char rx4_buffer[10];            // Buffer for incoming commands
+volatile uint8_t rx4_index = 0; // Current buffer index
+volatile uint8_t msg_ready = 0; // Flag set when full command received
+
+UART_HandleTypeDef huart2;      // UART2 handle
+UART_HandleTypeDef huart4;      // UART4 handle
+
+/* ----------- FreeRTOS Thread Handles ----------- */
+osThreadId_t defaultTaskHandle;
+const osThreadAttr_t defaultTask_attributes = {
+  .name = "defaultTask",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4
+};
+
+osThreadId_t LEDTaskHandle;
+const osThreadAttr_t LEDTask_attributes = {
+  .name = "LEDTask",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4
+};
+
+osThreadId_t SerialTaskHandle;
+const osThreadAttr_t SerialTask_attributes = {
+  .name = "SerialTask",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4
+};
+
+/* Function prototypes */
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+static void MX_USART4_UART_Init(void);
+void StartDefaultTask(void *argument);
+void LEDTaskFunction(void *argument);
+void SerialTaskFunction(void *argument);
+
+
+int main(void) {
+  HAL_Init();                   // Initialize HAL and system peripherals
+  SystemClock_Config();         // Configure clock and PLL
+  MX_GPIO_Init();               // Initialize GPIO pins
+  MX_USART2_UART_Init();        // Init UART2 for debugging
+  MX_USART4_UART_Init();        // Init UART4 for command reception
+
+  // Start UART4 interrupt receiving for 1 byte at a time
+  HAL_UART_Receive_IT(&huart4, &rx4_byte, 1);
+
+  // Print welcome message over UART2
+  char wel_msg[] = "Welcome12\r\n";
+  HAL_UART_Transmit(&huart2, (uint8_t *)wel_msg, strlen(wel_msg), HAL_MAX_DELAY);
+
+  // Initialize FreeRTOS kernel
+  osKernelInitialize();
+
+  // Create the tasks
+  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  LEDTaskHandle = osThreadNew(LEDTaskFunction, NULL, &LEDTask_attributes);
+  SerialTaskHandle = osThreadNew(SerialTaskFunction, NULL, &SerialTask_attributes);
+
+  // Start RTOS
+  osKernelStart();
+
+  while (1) {
+    // Should never reach here after RTOS starts
+  }
+}
+
+
+/**
+ * @brief UART Receive Complete ISR callback
+ *        Called automatically when 1 byte is received on UART4.
+ *
+ * @param huart Pointer to UART handle
+ */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+
+  if (huart->Instance == USART4) {       // Ensure interrupt is from UART4
+
+    if (rx4_byte == '\r') {
+      // Ignore carriage return
+    }
+    else if (rx4_byte == '\n') {         // Message end detected
+      rx4_buffer[rx4_index] = '\0';      // Null-terminate string
+      rx4_index = 0;                     // Reset buffer index
+      msg_ready = 1;                     // Signal to SerialTask
+    }
+    else {
+      // Store character if buffer has space
+      if (rx4_index < sizeof(rx4_buffer) - 1)
+        rx4_buffer[rx4_index++] = rx4_byte;
+    }
+
+    // Restart UART interrupt reception
+    HAL_UART_Receive_IT(&huart4, &rx4_byte, 1);
+  }
+}
+
+
+/**
+ * @brief Configure system clock (HSI-based)
+ */
+void SystemClock_Config(void) {
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+    Error_Handler();
+
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK |
+                                RCC_CLOCKTYPE_SYSCLK |
+                                RCC_CLOCKTYPE_PCLK1;
+
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+    Error_Handler();
+}
+
+
+/**
+ * @brief Initialize UART2 (115200 baud debug console)
+ */
+static void MX_USART2_UART_Init(void) {
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart2.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+
+  if (HAL_UART_Init(&huart2) != HAL_OK) Error_Handler();
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart2, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK) Error_Handler();
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart2, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK) Error_Handler();
+  if (HAL_UARTEx_DisableFifoMode(&huart2) != HAL_OK) Error_Handler();
+}
+
+
+/**
+ * @brief Initialize UART4 (115200 baud command input)
+ */
+static void MX_USART4_UART_Init(void) {
+  huart4.Instance = USART4;
+  huart4.Init.BaudRate = 115200;
+  huart4.Init.WordLength = UART_WORDLENGTH_8B;
+  huart4.Init.StopBits = UART_STOPBITS_1;
+  huart4.Init.Parity = UART_PARITY_NONE;
+  huart4.Init.Mode = UART_MODE_TX_RX;
+  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart4.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+
+  if (HAL_UART_Init(&huart4) != HAL_OK)
+    Error_Handler();
+}
+
+
+/**
+ * @brief Initialize GPIO pins (LED + button)
+ */
+static void MX_GPIO_Init(void) {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+
+ _IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = LED_GREEN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(LED_GREEN_GPIO_Port, &GPIO_InitStruct);
+}
+
+
+/**
+ * @brief Default FreeRTOS Task
+ */
+void StartDefaultTask(void *argument) {
+  for (;;) {
+    osDelay(1);
+  }
+}
+
+
+/**
+ * @brief LED Task (currently empty)
+ */
+void LEDTaskFunction(void *argument) {
+  for (;;) {
+    osDelay(1);
+  }
+}
+
+
+/**
+ * @brief Serial processing task.
+ *        Executes when msg_ready flag is set by UART ISR.
+ */
+void SerialTaskFunction(void *argument) {
+  for (;;) {
+
+    if (msg_ready) {           // New message received
+      msg_ready = 0;
+
+      if (strcmp(rx4_buffer, "hi") == 0) { // Compare with expected command
+        char response[] = "ok\r\n";
+        HAL_UART_Transmit(&huart2, (uint8_t *)response, strlen(response), HAL_MAX_DELAY);
+      }
+
+      memset(rx4_buffer, 0, sizeof(rx4_buffer)); // Clear buffer
+    }
+
+    osDelay(5); // Avoid CPU hogging
+  }
+}
+
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim->Instance == TIM6) {
+    HAL_IncTick(); // SysTick increment
+  }
+}
+
+
+/**
+ * @brief Error handler
+ */
+void Error_Handler(void) {
+  __disable_irq();
+  while (1) {}
+}
+
+#ifdef USE_FULL_ASSERT
+void assert_failed(uint8_t *file, uint32_t line) { }
+#endif

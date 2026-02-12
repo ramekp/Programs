@@ -1,0 +1,10 @@
+18:19:05 **** Incremental Build of configuration Debug for project BareMetal_Serial_RS485_Board1_Bidirectional ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_Serial_RS485_Board1_Bidirectional.elf 
+   text	   data	    bss	    dec	    hex	filename
+  13620	     12	   1724	  15356	   3bfc	BareMetal_Serial_RS485_Board1_Bidirectional.elf
+Finished building: default.size.stdout
+ 
+
+18:19:06 Build Finished. 0 errors, 0 warnings. (took 966ms)
+

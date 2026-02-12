@@ -1,0 +1,421 @@
+/**
+ * @file main.c
+ * @brief STM32 + CMSIS-RTOS v2 app using UART4 (RX via interrupts) and UART2 (debug TX),
+ *        with three RTOS tasks and simple newline-terminated command parsing.
+ *
+ * Overview:
+ *  - UART4: interrupt-driven RX (1 byte), assembles text into a small buffer
+ *           until '\n' is received. '\r' is ignored. On newline, sets msg_ready.
+ *  - UART2: debug/console TX (prints welcome and responses).
+ *  - Tasks:
+ *      * defaultTask: idle loop placeholder
+ *      * LEDTask:     placeholder for LED control
+ *      * SerialTask:  checks msg_ready, compares command, sends response over UART2
+ *
+ * Notes:
+ *  - rx4_buffer is limited to 10 chars. Excess characters (if any) are ignored
+ *    once the buffer is nearly full (keeps room for '\0').
+ *  - Cross-context communication (ISR -> task) is done via a volatile flag (msg_ready).
+ *  - System clock uses HSI (no PLL), Flash latency 0.
+ */
+
+#include "main.h"        // HAL and board-specific definitions
+#include "cmsis_os.h"    // CMSIS-RTOS v2 API
+#include <string.h>      // For strlen(), strcmp(), memset()
+
+/* =========================== RX state (UART4) =========================== */
+
+uint8_t rx4_byte;               // Single-byte staging area for UART4 RX (IT mode)
+char rx4_buffer[10];            // Small command buffer for UART4 (NUL-terminated)
+volatile uint8_t rx4_index = 0; // Current write index into rx4_buffer
+volatile uint8_t msg_ready = 0; // Flag set when a complete line is received
+
+/* =============================== UARTs ================================= */
+
+UART_HandleTypeDef huart2;      // UART2 handle (debug/console)
+UART_HandleTypeDef huart4;      // UART4 handle (command input)
+
+/* ============================= RTOS objects ============================= */
+
+osThreadId_t defaultTaskHandle; // Default/idle-like task handle
+const osThreadAttr_t defaultTask_attributes = {
+  .name = "defaultTask",                      // Task name (for debug)
+  .priority = (osPriority_t) osPriorityNormal,// Normal priority
+  .stack_size = 128 * 4                       // Stack size in bytes
+};
+
+osThreadId_t LEDTaskHandle;     // LED task handle
+const osThreadAttr_t LEDTask_attributes = {
+  .name = "LEDTask",                          // Task name (for debug)
+  .priority = (osPriority_t) osPriorityNormal,// Normal priority
+  .stack_size = 128 * 4                       // Stack size in bytes
+};
+
+osThreadId_t SerialTaskHandle;  // Serial processing task handle
+const osThreadAttr_t SerialTask_attributes = {
+  .name = "SerialTask",                       // Task name (for debug)
+  .priority = (osPriority_t) osPriorityNormal,// Normal priority
+  .stack_size = 128 * 4                       // Stack size in bytes
+};
+
+/* ============================ Declarations ============================== */
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+static void MX_USART4_UART_Init(void);
+void StartDefaultTask(void *argument);
+void LEDTaskFunction(void *argument);
+void SerialTaskFunction(void *argument);
+
+
+/**
+ * @brief Program entry point. Initializes HAL, clocks, GPIO, UARTs, and RTOS.
+ *
+ * Flow:
+ *  - HAL_Init() to reset peripherals and init the HAL.
+ *  - Configure system clock via HSI (no PLL).
+ *  - Initialize GPIO and both UARTs.
+ *  - Start interrupt-driven RX on UART4 (1 byte).
+ *  - Transmit a welcome string over UART2.
+ *  - Initialize and start the RTOS kernel with three tasks.
+ *  - Infinite loop (should not be reached after osKernelStart()).
+ */
+int main(void) {
+  HAL_Init();                      // Initialize the HAL library and low-level hardware
+  SystemClock_Config();            // Configure system clock (HSI, no PLL)
+
+  MX_GPIO_Init();                  // Initialize GPIOs (LED + user button)
+  MX_USART2_UART_Init();           // Initialize UART2 (debug/console)
+  MX_USART4_UART_Init();           // Initialize UART4 (command input)
+
+  // Start interrupt-driven reception on UART4 (1 byte at a time)
+  HAL_UART_Receive_IT(&huart4, &rx4_byte, 1);
+
+  // Transmit a welcome banner over UART2
+  char wel_msg[] = "Welcome12\r\n";                                  // Text to send
+  HAL_UART_Transmit(&huart2, (uint8_t *)wel_msg, strlen(wel_msg),    // Send via UART2
+                    HAL_MAX_DELAY);                                   // Block until done
+
+  osKernelInitialize();           // Initialize CMSIS-RTOS2 kernel objects
+
+  // Create RTOS tasks
+  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  LEDTaskHandle     = osThreadNew(LEDTaskFunction,   NULL, &LEDTask_attributes);
+  SerialTaskHandle  = osThreadNew(SerialTaskFunction,NULL, &SerialTask_attributes);
+
+  osKernelStart();                 // Start the RTOS scheduler (control moves to tasks)
+
+  while (1) {
+    // Should not reach here once the scheduler is running
+  }
+}
+
+
+/**
+ * @brief UART RX complete callback (ISR context).
+ *
+ * Behavior (only for UART4):
+ *  - On '\r': ignore (do nothing).
+ *  - On '\n': terminate the buffer with '\0', reset index, set msg_ready flag.
+ *  - Otherwise: append the byte to rx4_buffer if space remains.
+ *  - Always restarts the 1-byte IT receive.
+ *
+ * @param huart Pointer to the UART handle that triggered the callback.
+ */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+  if (huart->Instance == USART4) {                // Ensure this is UART4's interrupt
+
+    if (rx4_byte == '\r') {
+      // Ignore carriage return (no action)
+    }
+    else if (rx4_byte == '\n') {                  // Line-feed marks end of message
+      rx4_buffer[rx4_index] = '\0';               // NUL-terminate the string
+      rx4_index = 0;                              // Reset write index for next message
+      msg_ready = 1;                              // Notify task layer that a message is ready
+    }
+    else {
+      // Store character if there’s room (reserve 1 byte for the final '\0')
+      if (rx4_index < sizeof(rx4_buffer) - 1) {
+        rx4_buffer[rx4_index++] = rx4_byte;       // Append to buffer and advance index
+      }
+      // If full, the byte is dropped; buffer remains valid and NUL-terminable on '\n'
+    }
+
+    // Re-arm interrupt-driven RX for the next byte
+    HAL_UART_Receive_IT(&huart4, &rx4_byte, 1);
+  }
+}
+
+
+/**
+ * @brief Configure the STM32 system clock using HSI as SYSCLK source.
+ *
+ * Configuration summary:
+ *  - Voltage scaling: Scale 1 (performance)
+ *  - Oscillator: HSI ON, DIV1, default calibration
+ *  - PLL: disabled
+ *  - SYSCLK source: HSI
+ *  - AHB (HCLK):  /1
+ *  - APB1 (PCLK1):/1
+ *  - Flash latency: 0 wait states (suitable for 16 MHz)
+ *
+ * Any configuration error ends in Error_Handler().
+ */
+void SystemClock_Config(void) {
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};     // Oscillator configuration struct
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};     // Bus clocks configuration struct
+
+  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1); // Set voltage scaling
+
+  // ---- HSI oscillator configuration ----
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;      // Use HSI
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;                        // Turn on HSI
+  RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;                        // No division
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT; // Default trim
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;                  // Disable PLL
+
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {          // Apply oscillator config
+    Error_Handler();                                              // Trap on error
+  }
+
+  // ---- Clock tree configuration ----
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK   |            // Configure HCLK
+                                RCC_CLOCKTYPE_SYSCLK |            // Configure SYSCLK
+                                RCC_CLOCKTYPE_PCLK1;              // Configure PCLK1
+
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;          // SYSCLK = HSI
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;              // HCLK = SYSCLK/1
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;               // PCLK1 = HCLK/1
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
+    Error_Handler();                                              // Trap on error
+  }
+}
+
+
+/**
+ * @brief Initialize USART2 for 115200-8N1, TX/RX, no flow control.
+ *
+ * Settings:
+ *  - BaudRate: 115200
+ *  - WordLength: 8 bits
+ *  - StopBits: 1
+ *  - Parity: None
+ *  - Mode: TX and RX enabled
+ *  - Oversampling: 16
+ *  - One-bit sampling: disabled
+ *  - Clock prescaler: DIV1
+ *  - Advanced features: none
+ *  - FIFO: thresholds set, then FIFO mode disabled
+ *
+ * Any init/config error results in Error_Handler().
+ */
+static void MX_USART2_UART_Init(void) {
+  huart2.Instance = USART2;                                  // Select USART2 instance
+  huart2.Init.BaudRate = 115200;                             // Baud rate
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;               // 8 data bits
+  huart2.Init.StopBits = UART_STOPBITS_1;                    // 1 stop bit
+  huart2.Init.Parity = UART_PARITY_NONE;                     // No parity
+  huart2.Init.Mode = UART_MODE_TX_RX;                        // Enable TX and RX
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;               // No HW flow control
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;           // Standard oversampling
+  huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;  // Disable one-bit sampling
+  huart2.Init.ClockPrescaler = UART_PRESCALER_DIV1;          // No prescaler
+  huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; // No advanced features
+
+  if (HAL_UART_Init(&huart2) != HAL_OK) {                    // Initialize peripheral
+    Error_Handler();                                         // Trap on error
+  }
+
+  // Configure TX/RX FIFO thresholds (even if FIFO will be disabled afterward)
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart2, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK) {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart2, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK) {
+    Error_Handler();
+  }
+
+  // Operate in non-FIFO mode (legacy behavior)
+  if (HAL_UARTEx_DisableFifoMode(&huart2) != HAL_OK) {
+    Error_Handler();
+  }
+}
+
+
+/**
+ * @brief Initialize USART4 for 115200-8N1, TX/RX, no flow control.
+ *
+ * Settings:
+ *  - BaudRate: 115200
+ *  - WordLength: 8 bits
+ *  - StopBits: 1
+ *  - Parity: None
+ *  - Mode: TX and RX enabled
+ *  - Oversampling: 16
+ *  - One-bit sampling: disabled
+ *  - Clock prescaler: DIV1
+ *  - Advanced features: none
+ *
+ * Any init error results in Error_Handler().
+ */
+static void MX_USART4_UART_Init(void) {
+  huart4.Instance = USART4;                                  // Select USART4 instance
+  huart4.Init.BaudRate = 115200;                             // Baud rate
+  huart4.Init.WordLength = UART_WORDLENGTH_8B;               // 8 data bits
+  huart4.Init.StopBits = UART_STOPBITS_1;                    // 1 stop bit
+  huart4.Init.Parity = UART_PARITY_NONE;                     // No parity
+  huart4.Init.Mode = UART_MODE_TX_RX;                        // Enable TX and RX
+  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;               // No HW flow control
+  huart4.Init.OverSampling = UART_OVERSAMPLING_16;           // Standard oversampling
+  huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;  // Disable one-bit sampling
+  huart4.Init.ClockPrescaler = UART_PRESCALER_DIV1;          // No prescaler
+  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; // No advanced features
+
+  if (HAL_UART_Init(&huart4) != HAL_OK) {                    // Initialize peripheral
+    Error_Handler();                                         // Trap on error
+  }
+}
+
+
+/**
+ * @brief Initialize GPIO for LED and user button, and enable port clocks.
+ *
+ * Configuration:
+ *  - Enable clocks: GPIOC, GPIOF, GPIOA
+ *  - LED_GREEN_Pin: Output push-pull, no pull, high speed, initial level LOW
+ *  - B1_Pin (user button): External interrupt on rising edge, no pull
+ *
+ * Any HAL config error results in Error_Handler() (by convention; not needed here).
+ */
+static void MX_GPIO_Init(void) {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};     // Init struct for GPIO config
+
+  __HAL_RCC_GPIOC_CLK_ENABLE();               // Enable GPIOC clock
+  __HAL_RCC_GPIOF_CLK_ENABLE();               // Enable GPIOF clock
+  __HAL_RCC_GPIOA_CLK_ENABLE();               // Enable GPIOA clock
+
+  // Initialize LED output to LOW (off)
+  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+
+  // Configure user button (B1) as rising-edge external interrupt, no pull
+  GPIO_InitStruct.Pin = B1_Pin;               // Select the button pin
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING; // Interrupt on rising edge
+  GPIO_InitStruct.Pull = GPIO_NOPULL;         // No internal pull-up/pull-down
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  // Configure LED pin as push-pull output, high speed, no pull
+  GPIO_InitStruct.Pin = LED_GREEN_Pin;        // Select LED pin
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP; // Push-pull output
+  GPIO_InitStruct.Pull = GPIO_NOPULL;         // No pull
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH; // High-speed output
+  HAL_GPIO_Init(LED_GREEN_GPIO_Port, &GPIO_InitStruct);
+}
+
+
+/**
+ * @brief Default RTOS task. Placeholder loop with minimal delay.
+ *
+ * Behavior:
+ *  - Runs forever, sleeping 1 ms per iteration to yield CPU.
+ *
+ * @param argument Unused (pass NULL).
+ */
+void StartDefaultTask(void *argument) {
+  for(;;) {                // Infinite loop
+    osDelay(1);            // Yield for 1 ms
+  }
+}
+
+
+/**
+ * @brief LED control task (placeholder).
+ *
+ * Behavior:
+ *  - Runs forever, currently sleeping 1 ms per iteration.
+ *  - Intended place to add LED blinking/timing logic.
+ *
+ * @param argument Unused (pass NULL).
+ */
+void LEDTaskFunction(void *argument) {
+  for(;;) {                // Infinite loop
+    osDelay(1);            // Yield for 1 ms
+  }
+}
+
+
+/**
+ * @brief Serial processing task. Reacts to messages assembled by UART4 ISR.
+ *
+ * Behavior:
+ *  - Polls msg_ready flag; when set, clears it and parses rx4_buffer.
+ *  - If command == "hi", responds "ok\r\n" over UART2.
+ *  - Clears rx4_buffer after processing to avoid stale data.
+ *  - Sleeps 5 ms per loop to avoid CPU hogging.
+ *
+ * Notes:
+ *  - msg_ready is set in ISR; declared volatile to ensure visibility.
+ *  - strcmp() is safe because ISR ensures rx4_buffer is NUL-terminated.
+ *
+ * @param argument Unused (pass NULL).
+ */
+void SerialTaskFunction(void *argument) {
+  for (;;) {                               // Infinite processing loop
+    if (msg_ready) {                       // Check if a new message is ready
+      msg_ready = 0;                       // Consume the message (clear flag)
+
+      if (strcmp(rx4_buffer, "hi") == 0) { // If command is exactly "hi"
+        char response[] = "ok\r\n";        // Prepare response
+        HAL_UART_Transmit(&huart2, (uint8_t *)response,
+                          strlen(response), HAL_MAX_DELAY); // Send via UART2
+      }
+
+      memset(rx4_buffer, 0, sizeof(rx4_buffer)); // Clear buffer content
+    }
+
+    osDelay(5);                            // Small sleep to yield CPU
+  }
+}
+
+
+/**
+ * @brief Period elapsed callback for TIM base. Used to increment HAL tick.
+ *
+ * Behavior:
+ *  - If the timer instance is TIM6, call HAL_IncTick().
+ *  - This provides a time base for HAL timing functions when TIM6 is configured.
+ *
+ * @param htim Pointer to a TIM handle that triggered the callback.
+ */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim->Instance == TIM6) {    // Check the timer instance
+    HAL_IncTick();                 // Increment HAL time base tick
+  }
+}
+
+
+/**
+ * @brief Fatal error handler. Disables interrupts and traps the CPU.
+ *
+ * Behavior:
+ *  - __disable_irq() to prevent further interrupts.
+ *  - Infinite loop to halt execution for debugging.
+ */
+void Error_Handler(void) {
+  __disable_irq();                 // Disable all interrupts
+  while (1) {                      // Trap CPU here
+  }
+}
+
+#ifdef USE_FULL_ASSERT
+/**
+ * @brief Reports the name of the source file and the source line number
+ *        where the assert_param error has occurred.
+ *
+ * @param file Pointer to the source file name.
+ * @param line Assert line number.
+ */
+void assert_failed(uint8_t *file, uint32_t line) {
+  // Optionally print or log (file, line) here for diagnostics
+}
+#endif
