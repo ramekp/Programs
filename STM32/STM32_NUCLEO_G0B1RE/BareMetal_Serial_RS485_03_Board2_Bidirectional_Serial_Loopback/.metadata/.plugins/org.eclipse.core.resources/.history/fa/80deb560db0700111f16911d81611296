@@ -1,0 +1,93 @@
+#include "main.h"
+#include "usart.h"
+#include "gpio.h"
+#include <string.h>
+#include <stdbool.h>
+
+void SystemClock_Config(void);
+
+static void led_task_500ms(void) {
+  static uint32_t last = 0;
+  uint32_t now = HAL_GetTick();
+  if ((now - last) >= 500U) {
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    last = now;
+  }
+}
+
+static void uart2_print(const char* s) {
+  HAL_UART_Transmit(&huart2, (uint8_t*)s, (uint16_t)strlen(s), 100U);
+}
+
+static HAL_StatusTypeDef uart_receive_exact(UART_HandleTypeDef* huart, uint8_t* buf, uint16_t len, uint32_t timeout_per_byte_ms) {
+  for (uint16_t i = 0; i < len; ++i) {
+    HAL_StatusTypeDef st = HAL_UART_Receive(huart, &buf[i], 1, timeout_per_byte_ms);
+    if (st != HAL_OK) {
+      return st;
+    }
+  }
+  return HAL_OK;
+}
+
+int main(void) {
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+  MX_USART4_UART_Init();
+  MX_USART2_UART_Init();
+
+  uart2_print("Board2 ready\r\n");
+
+  uint8_t rx_buf[4];
+
+  for (;;) {
+    if (uart_receive_exact(&huart4, rx_buf, sizeof(rx_buf), 100U) == HAL_OK) {
+      HAL_UART_Transmit(&huart2, rx_buf, sizeof(rx_buf), 100U);
+    }
+
+    led_task_500ms();
+  }
+}
+
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+void Error_Handler(void)
+{
+  __disable_irq();
+  while (1)
+  {
+  }
+}
+
+#ifdef USE_FULL_ASSERT
+void assert_failed(uint8_t *file, uint32_t line)
+{
+}
+#endif

@@ -1,0 +1,10 @@
+13:48:41 **** Incremental Build of configuration Debug for project BareMetal_GPIO_PWM_LED ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_GPIO_PWM_LED.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17152	     20	   1796	  18968	   4a18	BareMetal_GPIO_PWM_LED.elf
+Finished building: default.size.stdout
+ 
+
+13:48:42 Build Finished. 0 errors, 0 warnings. (took 1s.123ms)
+

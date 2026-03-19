@@ -1,0 +1,139 @@
+#include "main.h"
+#include "spi.h"
+#include "usart.h"
+#include "gpio.h"
+#include <string.h>
+#include <stdio.h>
+
+#define ADXL_REG_DEVID        0x00
+#define ADXL_REG_BW_RATE      0x2C
+#define ADXL_REG_POWER_CTL    0x2D
+#define ADXL_REG_DATA_FORMAT  0x31
+#define ADXL_REG_DATAX0       0x32
+
+#define ADXL_DEVID_EXPECTED   0xE5
+#define ADXL_POWER_MEASURE    0x08
+#define ADXL_BW_100HZ         0x0A
+#define ADXL_FULL_RES_2G      0x08
+
+#define ADXL_SPI_READ         0x80
+#define ADXL_SPI_MB           0x40
+
+#define ADXL_CS_GPIO_PORT     GPIOD
+#define ADXL_CS_PIN           GPIO_PIN_1
+
+void SystemClock_Config(void) {
+	RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+	RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+	HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
+	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+	RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
+	RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+	RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+	RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV1;
+	RCC_OscInitStruct.PLL.PLLN = 8;
+	RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+	RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+	RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
+		Error_Handler();
+	}
+	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1;
+	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK) {
+		Error_Handler();
+	}
+}
+
+uint8_t Uart2Transmit(const char *message, uint32_t period_ms) {
+    const uint32_t UART_TIMEOUT = 100U;
+    static uint32_t last_tick_time = 0;
+    uint32_t current_tick = HAL_GetTick();
+    if (period_ms == 0 || (uint32_t)(current_tick - last_tick_time) >= period_ms) {
+    	HAL_UART_Transmit(&huart2, (uint8_t*)message, (uint16_t)strlen(message), UART_TIMEOUT);
+    	if (period_ms > 0)
+            last_tick_time = current_tick;
+        return 1;
+    }
+    return 0;
+}
+
+static inline void ADXL_CS_High(void) {
+    HAL_GPIO_WritePin(ADXL_CS_GPIO_PORT, ADXL_CS_PIN, GPIO_PIN_SET);
+}
+
+static inline void ADXL_CS_Low(void) {
+    HAL_GPIO_WritePin(ADXL_CS_GPIO_PORT, ADXL_CS_PIN, GPIO_PIN_RESET);
+}
+
+static HAL_StatusTypeDef adxl_write(uint8_t reg, uint8_t val) {
+    uint8_t tx[2] = { reg, val };
+    ADXL_CS_Low();
+    HAL_StatusTypeDef st = HAL_SPI_Transmit(&hspi1, tx, 2, HAL_MAX_DELAY);
+    ADXL_CS_High();
+    return st;
+}
+
+static HAL_StatusTypeDef adxl_read(uint8_t reg, uint8_t *val) {
+    uint8_t cmd = ADXL_SPI_READ | reg;
+    ADXL_CS_Low();
+    HAL_StatusTypeDef st = HAL_SPI_Transmit(&hspi1, &cmd, 1, HAL_MAX_DELAY);
+    st |= HAL_SPI_Receive(&hspi1, val, 1, HAL_MAX_DELAY);
+    ADXL_CS_High();
+    return st;
+}
+
+static HAL_StatusTypeDef adxl_read_multi(uint8_t startReg, uint8_t *buf, uint16_t len) {
+    uint8_t cmd = ADXL_SPI_READ | ADXL_SPI_MB | startReg;
+    ADXL_CS_Low();
+    HAL_StatusTypeDef st = HAL_SPI_Transmit(&hspi1, &cmd, 1, HAL_MAX_DELAY);
+    st |= HAL_SPI_Receive(&hspi1, buf, len, HAL_MAX_DELAY);
+    ADXL_CS_High();
+    return st;
+}
+
+int main(void) {
+    HAL_Init();
+    SystemClock_Config();
+    MX_GPIO_Init();
+    MX_USART2_UART_Init();
+    MX_SPI1_Init();
+    Uart2Transmit("ADXL345 SPI...1111\r\n", 0);
+    ADXL_CS_High();
+    HAL_Delay(10);
+    uint8_t id = 0;
+    adxl_read(ADXL_REG_DEVID, &id);
+    if (id != ADXL_DEVID_EXPECTED) {
+    	Uart2Transmit("ADXL not detected\r\n", 0);
+        while (1);
+    }
+    adxl_write(ADXL_REG_BW_RATE, ADXL_BW_100HZ);
+    adxl_write(ADXL_REG_DATA_FORMAT, ADXL_FULL_RES_2G);
+    adxl_write(ADXL_REG_POWER_CTL, ADXL_POWER_MEASURE);
+    uint8_t rx[6];
+    int16_t x, y, z;
+    long xm, ym, zm;
+    while (1) {
+        if (adxl_read_multi(ADXL_REG_DATAX0, rx, 6) == HAL_OK) {
+            x = (int16_t)((rx[1] << 8) | rx[0]);
+            y = (int16_t)((rx[3] << 8) | rx[2]);
+            z = (int16_t)((rx[5] << 8) | rx[4]);
+            xm = (x * 39) / 10;
+            ym = (y * 39) / 10;
+            zm = (z * 39) / 10;
+            char out[64];
+            snprintf(out, sizeof(out), "x:%ld y:%ld z:%ld\r\n", xm, ym, zm);
+            Uart2Transmit(out, 1000);
+        }
+        HAL_Delay(50); // 20 Hz
+    }
+}
+
+void Error_Handler(void) {
+    while (1);
+}

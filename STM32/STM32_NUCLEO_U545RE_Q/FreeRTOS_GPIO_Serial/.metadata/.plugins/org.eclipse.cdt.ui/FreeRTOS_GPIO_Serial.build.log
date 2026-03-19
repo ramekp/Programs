@@ -1,0 +1,10 @@
+18:42:27 **** Incremental Build of configuration Debug for project FreeRTOS_GPIO_Serial ****
+make -j12 all 
+arm-none-eabi-size  FreeRTOS_GPIO_Serial.elf 
+   text	   data	    bss	    dec	    hex	filename
+  34872	     16	  12816	  47704	   ba58	FreeRTOS_GPIO_Serial.elf
+Finished building: default.size.stdout
+ 
+
+18:42:28 Build Finished. 0 errors, 0 warnings. (took 1s.333ms)
+

@@ -1,0 +1,142 @@
+#include "main.h"
+#include "usart.h"
+#include "gpio.h"
+#include <string.h>
+#include <stdbool.h>
+#include <stdio.h>
+
+void SystemClock_Config(void) {
+    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+    HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+    RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+    RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
+    RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
+        Error_Handler();
+    }
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
+        Error_Handler();
+    }
+}
+
+static void uart2_print(const char* s) {
+    HAL_UART_Transmit(&huart2, (uint8_t*)s, (uint16_t)strlen(s), 50U);
+}
+
+static void uart6_print(const char* s) {
+    HAL_UART_Transmit(&huart6, (uint8_t*)s, (uint16_t)strlen(s), 50U);
+}
+
+static bool uart4_receive() {
+    uint8_t buffer[20];  // Increased buffer size for longer messages
+    uint8_t index = 0;
+    bool message_complete = false;
+    uint32_t timeout_counter = 0;
+    const uint32_t MAX_TIMEOUT = 1000;
+
+    memset(buffer, 0, sizeof(buffer));
+
+    // Debug message to indicate we're starting to receive
+    uart2_print("Waiting for data on UART4...\r\n");
+
+    while (index < (sizeof(buffer) - 1) && !message_complete && timeout_counter < MAX_TIMEOUT) {
+        if (HAL_UART_Receive(&huart4, &buffer[index], 1, 10) == HAL_OK) {
+            // Debug: Print each received byte in hex
+            char debug_byte[20];
+            sprintf(debug_byte, "Received byte: 0x%02X\r\n", buffer[index]);
+            uart2_print(debug_byte);
+
+            if (buffer[index] == '\r') {
+                message_complete = true;
+                uart2_print("End of message detected\r\n");
+            }
+            index++;
+            timeout_counter = 0;
+        }
+        else {
+            timeout_counter++;
+            if (timeout_counter % 100 == 0) {
+                // Print timeout status every 100 iterations
+                char debug_timeout[30];
+                sprintf(debug_timeout, "Waiting... %lu/1000\r\n", timeout_counter);
+                uart2_print(debug_timeout);
+            }
+            HAL_Delay(1);
+        }
+    }
+
+    buffer[index] = '\0';
+
+    if (message_complete) {
+        // Calculate message length (excluding control characters)
+        uint8_t message_length = 0;
+        while (buffer[message_length] != '\n' && buffer[message_length] != '\r' && buffer[message_length] != '\0') {
+            message_length++;
+        }
+
+        // Print received message to UART2 for debugging
+        uart2_print("UART4 Received: ");
+        HAL_UART_Transmit(&huart2, buffer, message_length, 100);
+        uart2_print("\r\n");
+
+        // Forward the message to UART6
+        uart2_print("Forwarding to UART6: ");
+        HAL_UART_Transmit(&huart2, buffer, message_length, 100);
+        uart2_print("\r\n");
+
+        // Send the message content followed by \n\r to UART6
+        HAL_UART_Transmit(&huart6, buffer, message_length, 100);
+        HAL_UART_Transmit(&huart6, (uint8_t*)"\n\r", 2, 100);
+
+        return true;
+    }
+    else if (timeout_counter >= MAX_TIMEOUT) {
+        uart2_print("UART4 Receive timeout\r\n");
+        return false;
+    }
+
+    return false;
+}
+
+int main(void) {
+    HAL_Init();
+    SystemClock_Config();
+    MX_GPIO_Init();
+    MX_USART2_UART_Init();
+    MX_USART4_UART_Init();
+    MX_USART6_UART_Init();
+
+    uart2_print("\r\n\r\n--- RECEIVER BOARD STARTED ---\r\n");
+    uart2_print("WELCOME Board 2 - Check 2\r\n");
+
+    while (1) {
+        // Try to receive message from UART4
+        bool received = uart4_receive();
+
+        if (received) {
+            uart2_print("Message forwarded to sender\r\n");
+        }
+
+        uart2_print("-------------------\r\n");
+        HAL_Delay(10);  // Small delay to prevent tight looping
+    }
+}
+
+void Error_Handler(void) {
+    __disable_irq();
+    while (1) {
+    }
+}
+
+#ifdef USE_FULL_ASSERT
+void assert_failed(uint8_t *file, uint32_t line) {
+}
+#endif

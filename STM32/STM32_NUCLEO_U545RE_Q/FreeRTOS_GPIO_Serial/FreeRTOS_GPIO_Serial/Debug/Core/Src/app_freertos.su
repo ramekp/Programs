@@ -1,0 +1,4 @@
+../Core/Src/app_freertos.c:81:6:MX_FREERTOS_Init	8	static
+../Core/Src/app_freertos.c:126:6:StartDefaultTask	16	static
+../Core/Src/app_freertos.c:138:6:LEDTaskFunction	16	static
+../Core/Src/app_freertos.c:147:6:SerialTaskFunction	72	static

@@ -1,0 +1,10 @@
+13:06:45 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19636	     92	   2164	  21892	   5584	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+
+13:06:46 Build Finished. 0 errors, 0 warnings. (took 1s.210ms)
+

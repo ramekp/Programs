@@ -1,0 +1,10 @@
+16:53:33 **** Incremental Build of configuration Debug for project BareMetal_SPI_Single_Board ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_Single_Board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14596	     12	   1820	  16428	   402c	BareMetal_SPI_Single_Board.elf
+Finished building: default.size.stdout
+ 
+
+16:53:34 Build Finished. 0 errors, 0 warnings. (took 892ms)
+

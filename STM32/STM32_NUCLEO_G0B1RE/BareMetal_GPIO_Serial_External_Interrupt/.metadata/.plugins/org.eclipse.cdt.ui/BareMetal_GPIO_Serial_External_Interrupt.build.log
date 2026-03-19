@@ -1,0 +1,10 @@
+17:37:43 **** Incremental Build of configuration Debug for project BareMetal_GPIO_Serial_External_Interrupt ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_GPIO_Serial_External_Interrupt.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12472	     12	   1724	  14208	   3780	BareMetal_GPIO_Serial_External_Interrupt.elf
+Finished building: default.size.stdout
+ 
+
+17:37:44 Build Finished. 0 errors, 0 warnings. (took 1s.24ms)
+

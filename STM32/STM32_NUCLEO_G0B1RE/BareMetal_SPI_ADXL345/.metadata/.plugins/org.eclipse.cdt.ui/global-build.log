@@ -1,0 +1,989 @@
+11:47:49 **** Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_cortex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_cortex.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_cortex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_cortex.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma_ex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma_ex.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_dma_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_exti.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_exti.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_exti.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_exti.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash_ex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash_ex.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_flash_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_gpio.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_gpio.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr_ex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr_ex.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_pwr_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc_ex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc_ex.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_rcc_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi_ex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi_ex.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_spi_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart_ex.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart_ex.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart_ex.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_hal_uart_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_ll_rcc.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_ll_rcc.d" -MT"Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_ll_rcc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/STM32G0xx_HAL_Driver/Src/stm32g0xx_ll_rcc.o"
+arm-none-eabi-gcc -mcpu=cortex-m0plus -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32g0b1retx.d" -MT"Core/Startup/startup_stm32g0b1retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Startup/startup_stm32g0b1retx.o" "../Core/Startup/startup_stm32g0b1retx.s"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_hal_msp.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_hal_msp.d" -MT"Core/Src/stm32g0xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_it.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_it.d" -MT"Core/Src/stm32g0xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32g0xx.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32g0xx.d" -MT"Core/Src/system_stm32g0xx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/system_stm32g0xx.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  12552	     12	   1820	  14384	   3830	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+11:56:24 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:76:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+   76 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+../Core/Src/main.c:66:26: warning: 'adxl_read_multi' defined but not used [-Wunused-function]
+   66 | static HAL_StatusTypeDef adxl_read_multi(uint8_t startReg, uint8_t *buf, uint16_t len) {
+      |                          ^~~~~~~~~~~~~~~
+../Core/Src/main.c:54:26: warning: 'adxl_read_reg' defined but not used [-Wunused-function]
+   54 | static HAL_StatusTypeDef adxl_read_reg(uint8_t reg, uint8_t *val) {
+      |                          ^~~~~~~~~~~~~
+../Core/Src/main.c:43:26: warning: 'adxl_write_reg' defined but not used [-Wunused-function]
+   43 | static HAL_StatusTypeDef adxl_write_reg(uint8_t reg, uint8_t val) {
+      |                          ^~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  12552	     12	   1820	  14384	   3830	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:10:35 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:21: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+  121 |             int n = snprintf(msg, sizeof(msg), "X=%+0.3f g, Y=%+0.3f g, Z=%+0.3f g\r\n", x_g, y_g, z_g);
+      |                     ^~~~~~~~
+../Core/Src/main.c:5:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    4 | #include "gpio.h"
+  +++ |+#include <stdio.h>
+    5 | 
+../Core/Src/main.c:121:21: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+  121 |             int n = snprintf(msg, sizeof(msg), "X=%+0.3f g, Y=%+0.3f g, Z=%+0.3f g\r\n", x_g, y_g, z_g);
+      |                     ^~~~~~~~
+../Core/Src/main.c:121:21: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+../Core/Src/main.c:128:77: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  128 |                         HAL_UART_Transmit(&huart2, (uint8_t*)err, (uint16_t)strlen(err), HAL_MAX_DELAY);
+      |                                                                             ^~~~~~
+../Core/Src/main.c:5:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    4 | #include "gpio.h"
+  +++ |+#include <string.h>
+    5 | 
+../Core/Src/main.c:128:77: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+  128 |                         HAL_UART_Transmit(&huart2, (uint8_t*)err, (uint16_t)strlen(err), HAL_MAX_DELAY);
+      |                                                                             ^~~~~~
+../Core/Src/main.c:128:77: note: include '<string.h>' or provide a declaration of 'strlen'
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20672	     92	   2148	  22912	   5980	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:10:50 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:123:21: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+  123 |             int n = snprintf(msg, sizeof(msg), "X=%+0.3f g, Y=%+0.3f g, Z=%+0.3f g\r\n", x_g, y_g, z_g);
+      |                     ^~~~~~~~
+../Core/Src/main.c:7:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    6 | #include <string.h>
+  +++ |+#include <stdio.h>
+    7 | 
+../Core/Src/main.c:123:21: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+  123 |             int n = snprintf(msg, sizeof(msg), "X=%+0.3f g, Y=%+0.3f g, Z=%+0.3f g\r\n", x_g, y_g, z_g);
+      |                     ^~~~~~~~
+../Core/Src/main.c:123:21: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20672	     92	   2148	  22912	   5980	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:11:30 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20672	     92	   2148	  22912	   5980	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:11:37 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20672	     92	   2148	  22912	   5980	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:11:41 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20672	     92	   2148	  22912	   5980	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:13:31 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:109:9: error: too few arguments to function 'Uart2Transmit'
+  109 |         Uart2Transmit("Welcome SPI 1\n\r");
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:83:9: note: declared here
+   83 | uint8_t Uart2Transmit(const char *message, uint32_t period_ms) {
+      |         ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:43: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+12:13:44 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20800	     92	   2156	  23048	   5a08	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:13:54 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20800	     92	   2156	  23048	   5a08	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:14:35 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20800	     92	   2156	  23048	   5a08	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:47:40 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20888	     92	   2156	  23136	   5a60	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:47:46 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20888	     92	   2156	  23136	   5a60	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:52:01 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  21000	     92	   2156	  23248	   5ad0	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:52:08 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21000	     92	   2156	  23248	   5ad0	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:52:35 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21000	     92	   2156	  23248	   5ad0	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:58:33 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:104:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+  104 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  21384	     92	   2156	  23632	   5c50	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:58:50 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:104:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+  104 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  21384	     92	   2156	  23632	   5c50	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+12:59:21 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21384	     92	   2156	  23632	   5c50	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+12:59:25 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21384	     92	   2156	  23632	   5c50	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+13:02:16 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:203:39: warning: implicit declaration of function 'labs' [-Wimplicit-function-declaration]
+  203 |                            x_mg/1000, labs(x_mg%1000),
+      |                                       ^~~~
+../Core/Src/main.c:8:1: note: include '<stdlib.h>' or provide a declaration of 'labs'
+    7 | #include <stdio.h>
+  +++ |+#include <stdlib.h>
+    8 | 
+../Core/Src/main.c:203:39: warning: incompatible implicit declaration of built-in function 'labs' [-Wbuiltin-declaration-mismatch]
+  203 |                            x_mg/1000, labs(x_mg%1000),
+      |                                       ^~~~
+../Core/Src/main.c:203:39: note: include '<stdlib.h>' or provide a declaration of 'labs'
+../Core/Src/main.c:186:25: warning: unused variable 'z_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |                         ^~~
+../Core/Src/main.c:186:18: warning: unused variable 'y_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |                  ^~~
+../Core/Src/main.c:186:11: warning: unused variable 'x_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |           ^~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:104:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+  104 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20336	     92	   2156	  22584	   5838	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+13:06:15 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:8:20: warning: extra tokens at end of #include directive
+    8 | #include <stdlib.h>.
+      |                    ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:186:25: warning: unused variable 'z_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |                         ^~~
+../Core/Src/main.c:186:18: warning: unused variable 'y_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |                  ^~~
+../Core/Src/main.c:186:11: warning: unused variable 'x_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |           ^~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:104:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+  104 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20336	     92	   2156	  22584	   5838	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+13:06:30 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:186:25: warning: unused variable 'z_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |                         ^~~
+../Core/Src/main.c:186:18: warning: unused variable 'y_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |                  ^~~
+../Core/Src/main.c:186:11: warning: unused variable 'x_g' [-Wunused-variable]
+  186 |   float   x_g,   y_g,   z_g;
+      |           ^~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:104:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+  104 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20336	     92	   2156	  22584	   5838	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+13:06:40 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:104:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+  104 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20336	     92	   2156	  22584	   5838	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+13:06:57 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:104:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+  104 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20340	     92	   2156	  22588	   583c	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+13:07:03 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20340	     92	   2156	  22588	   583c	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+13:09:11 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:95:13: warning: 'adxl_to_g' defined but not used [-Wunused-function]
+   95 | static void adxl_to_g(int16_t raw, float *out_g) {
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20340	     92	   2156	  22588	   583c	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:33:35 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20332	     92	   2156	  22580	   5834	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:34:21 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20316	     92	   2156	  22564	   5824	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:34:30 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20316	     92	   2156	  22564	   5824	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+14:45:05 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20288	     92	   2156	  22536	   5808	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:45:14 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  20288	     92	   2156	  22536	   5808	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:45:23 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20288	     92	   2156	  22536	   5808	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+14:48:53 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:61:5: warning: implicit declaration of function 'SystemClock_Config'; did you mean 'SysTick_Config'? [-Wimplicit-function-declaration]
+   61 |     SystemClock_Config();
+      |     ^~~~~~~~~~~~~~~~~~
+      |     SysTick_Config
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:61:(.text.main+0xa): undefined reference to `SystemClock_Config'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: BareMetal_SPI_ADXL345.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+14:49:25 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19476	     92	   2148	  21716	   54d4	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:50:13 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:94:5: warning: implicit declaration of function 'Uart2Transmit' [-Wimplicit-function-declaration]
+   94 |     Uart2Transmit("ADXL345 SPI...333\r\n", 0);
+      |     ^~~~~~~~~~~~~
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:94:(.text.main+0x20): undefined reference to `Uart2Transmit'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: BareMetal_SPI_ADXL345.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+14:50:46 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19608	     92	   2156	  21856	   5560	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:51:58 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19608	     92	   2156	  21856	   5560	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+14:53:14 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19616	     92	   2156	  21864	   5568	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:53:35 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19628	     92	   2156	  21876	   5574	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:53:42 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19628	     92	   2156	  21876	   5574	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+14:57:58 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:116:50: error: expected ';' before 'while'
+  116 |         Uart2Transmit("ADXL not detected\r\n", 0)
+      |                                                  ^
+      |                                                  ;
+  117 |         while (1);
+      |         ~~~~~                                     
+../Core/Src/main.c:139:17: warning: unused variable 'n' [-Wunused-variable]
+  139 |             int n = snprintf(out, sizeof(out), "x:%ld y:%ld z:%ld\r\n", xm, ym, zm);
+      |                 ^
+make: *** [Core/Src/subdir.mk:43: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+14:58:08 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:139:17: warning: unused variable 'n' [-Wunused-variable]
+  139 |             int n = snprintf(out, sizeof(out), "x:%ld y:%ld z:%ld\r\n", xm, ym, zm);
+      |                 ^
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19592	     92	   2156	  21840	   5550	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:58:28 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19592	     92	   2156	  21840	   5550	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+14:59:30 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19588	     92	   2156	  21836	   554c	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+14:59:37 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19588	     92	   2156	  21836	   554c	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+15:02:02 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19588	     92	   2156	  21836	   554c	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+15:06:12 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19588	     92	   2156	  21836	   554c	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+15:11:04 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19592	     92	   2156	  21840	   5550	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+15:11:10 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19592	     92	   2156	  21840	   5550	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+13:03:08 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/adxl345.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adxl345.d" -MT"Core/Src/adxl345.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/adxl345.o"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_hal_msp.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_hal_msp.d" -MT"Core/Src/stm32g0xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_it.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_it.d" -MT"Core/Src/stm32g0xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32g0xx.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32g0xx.d" -MT"Core/Src/system_stm32g0xx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/system_stm32g0xx.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:8:5: warning: implicit declaration of function 'SystemClock_Config'; did you mean 'SysTick_Config'? [-Wimplicit-function-declaration]
+    8 |     SystemClock_Config();
+      |     ^~~~~~~~~~~~~~~~~~
+      |     SysTick_Config
+../Core/Src/main.c:9:5: warning: implicit declaration of function 'MX_GPIO_Init'; did you mean 'HAL_GPIO_Init'? [-Wimplicit-function-declaration]
+    9 |     MX_GPIO_Init();
+      |     ^~~~~~~~~~~~
+      |     HAL_GPIO_Init
+../Core/Src/main.c:10:5: warning: implicit declaration of function 'MX_SPI1_Init'; did you mean 'HAL_SPI_Init'? [-Wimplicit-function-declaration]
+   10 |     MX_SPI1_Init();
+      |     ^~~~~~~~~~~~
+      |     HAL_SPI_Init
+../Core/Src/main.c:11:5: warning: implicit declaration of function 'MX_USART2_UART_Init' [-Wimplicit-function-declaration]
+   11 |     MX_USART2_UART_Init();
+      |     ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:13:23: error: 'hspi1' undeclared (first use in this function)
+   13 |     if (ADXL345_Init(&hspi1) != HAL_OK)
+      |                       ^~~~~
+../Core/Src/main.c:13:23: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:15:9: warning: implicit declaration of function 'Uart2Transmit' [-Wimplicit-function-declaration]
+   15 |         Uart2Transmit("ADXL345 not detected!\r\n", 0);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:26:13: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+   26 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:2:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    1 | #include "adxl345.h"
+  +++ |+#include <stdio.h>
+    2 | 
+../Core/Src/main.c:26:13: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+   26 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:26:13: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+13:03:43 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:37:5: warning: implicit declaration of function 'MX_GPIO_Init'; did you mean 'HAL_GPIO_Init'? [-Wimplicit-function-declaration]
+   37 |     MX_GPIO_Init();
+      |     ^~~~~~~~~~~~
+      |     HAL_GPIO_Init
+../Core/Src/main.c:38:5: warning: implicit declaration of function 'MX_SPI1_Init'; did you mean 'HAL_SPI_Init'? [-Wimplicit-function-declaration]
+   38 |     MX_SPI1_Init();
+      |     ^~~~~~~~~~~~
+      |     HAL_SPI_Init
+../Core/Src/main.c:39:5: warning: implicit declaration of function 'MX_USART2_UART_Init' [-Wimplicit-function-declaration]
+   39 |     MX_USART2_UART_Init();
+      |     ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:41:23: error: 'hspi1' undeclared (first use in this function)
+   41 |     if (ADXL345_Init(&hspi1) != HAL_OK)
+      |                       ^~~~~
+../Core/Src/main.c:41:23: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:43:9: warning: implicit declaration of function 'Uart2Transmit' [-Wimplicit-function-declaration]
+   43 |         Uart2Transmit("ADXL345 not detected!\r\n", 0);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:54:13: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+   54 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:2:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    1 | #include "adxl345.h"
+  +++ |+#include <stdio.h>
+    2 | 
+../Core/Src/main.c:54:13: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+   54 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:54:13: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+13:04:04 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:39:5: warning: implicit declaration of function 'MX_SPI1_Init'; did you mean 'MX_GPIO_Init'? [-Wimplicit-function-declaration]
+   39 |     MX_SPI1_Init();
+      |     ^~~~~~~~~~~~
+      |     MX_GPIO_Init
+../Core/Src/main.c:40:5: warning: implicit declaration of function 'MX_USART2_UART_Init' [-Wimplicit-function-declaration]
+   40 |     MX_USART2_UART_Init();
+      |     ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:42:23: error: 'hspi1' undeclared (first use in this function)
+   42 |     if (ADXL345_Init(&hspi1) != HAL_OK)
+      |                       ^~~~~
+../Core/Src/main.c:42:23: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:44:9: warning: implicit declaration of function 'Uart2Transmit' [-Wimplicit-function-declaration]
+   44 |         Uart2Transmit("ADXL345 not detected!\r\n", 0);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:55:13: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+   55 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:3:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    2 | #include "gpio.h"
+  +++ |+#include <stdio.h>
+    3 | 
+../Core/Src/main.c:55:13: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+   55 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:55:13: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+13:04:22 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:41:5: warning: implicit declaration of function 'MX_USART2_UART_Init' [-Wimplicit-function-declaration]
+   41 |     MX_USART2_UART_Init();
+      |     ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:45:9: warning: implicit declaration of function 'Uart2Transmit' [-Wimplicit-function-declaration]
+   45 |         Uart2Transmit("ADXL345 not detected!\r\n", 0);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:56:13: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+   56 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:4:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    3 | #include "spi.h"
+  +++ |+#include <stdio.h>
+    4 | 
+../Core/Src/main.c:56:13: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+   56 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:56:13: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `SystemClock_Config':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:23:(.text.SystemClock_Config+0x86): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:31:(.text.SystemClock_Config+0xb0): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:45:(.text.main+0x2c): undefined reference to `Uart2Transmit'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:49:(.text.main+0x3a): undefined reference to `Uart2Transmit'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:57:(.text.main+0x7e): undefined reference to `Uart2Transmit'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/spi.o: in function `MX_SPI1_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/spi.c:56:(.text.MX_SPI1_Init+0x6a): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o: in function `MX_USART2_UART_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:54:(.text.MX_USART2_UART_Init+0x54): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:58:(.text.MX_USART2_UART_Init+0x66): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:62:(.text.MX_USART2_UART_Init+0x78): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:66:(.text.MX_USART2_UART_Init+0x88): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o:C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:91: more undefined references to `Error_Handler' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: BareMetal_SPI_ADXL345.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+13:04:40 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:46:9: warning: implicit declaration of function 'Uart2Transmit' [-Wimplicit-function-declaration]
+   46 |         Uart2Transmit("ADXL345 not detected!\r\n", 0);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:57:13: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+   57 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:5:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    4 | #include "usart.h"
+  +++ |+#include <stdio.h>
+    5 | 
+../Core/Src/main.c:57:13: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+   57 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:57:13: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `SystemClock_Config':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:24:(.text.SystemClock_Config+0x86): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:32:(.text.SystemClock_Config+0xb0): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:46:(.text.main+0x2c): undefined reference to `Uart2Transmit'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:50:(.text.main+0x3a): undefined reference to `Uart2Transmit'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:58:(.text.main+0x7e): undefined reference to `Uart2Transmit'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/spi.o: in function `MX_SPI1_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/spi.c:56:(.text.MX_SPI1_Init+0x6a): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o: in function `MX_USART2_UART_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:54:(.text.MX_USART2_UART_Init+0x54): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:58:(.text.MX_USART2_UART_Init+0x66): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:62:(.text.MX_USART2_UART_Init+0x78): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:66:(.text.MX_USART2_UART_Init+0x88): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o:C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:91: more undefined references to `Error_Handler' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: BareMetal_SPI_ADXL345.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+13:05:03 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'Uart2Transmit':
+../Core/Src/main.c:41:65: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+   41 |         HAL_UART_Transmit(&huart2, (uint8_t*)message, (uint16_t)strlen(message), UART_TIMEOUT);
+      |                                                                 ^~~~~~
+../Core/Src/main.c:5:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    4 | #include "usart.h"
+  +++ |+#include <string.h>
+    5 | 
+../Core/Src/main.c:41:65: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+   41 |         HAL_UART_Transmit(&huart2, (uint8_t*)message, (uint16_t)strlen(message), UART_TIMEOUT);
+      |                                                                 ^~~~~~
+../Core/Src/main.c:41:65: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:70:13: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+   70 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:5:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+    4 | #include "usart.h"
+  +++ |+#include <stdio.h>
+    5 | 
+../Core/Src/main.c:70:13: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+   70 |             snprintf(msg, sizeof(msg), "X:%d Y:%d Z:%d\r\n", x, y, z);
+      |             ^~~~~~~~
+../Core/Src/main.c:70:13: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `SystemClock_Config':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:24:(.text.SystemClock_Config+0x86): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:32:(.text.SystemClock_Config+0xb0): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/spi.o: in function `MX_SPI1_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/spi.c:56:(.text.MX_SPI1_Init+0x6a): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o: in function `MX_USART2_UART_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:54:(.text.MX_USART2_UART_Init+0x54): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:58:(.text.MX_USART2_UART_Init+0x66): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o:C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:62: more undefined references to `Error_Handler' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: BareMetal_SPI_ADXL345.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+13:05:23 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `SystemClock_Config':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:26:(.text.SystemClock_Config+0x86): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/main.c:34:(.text.SystemClock_Config+0xb0): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/spi.o: in function `MX_SPI1_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/spi.c:56:(.text.MX_SPI1_Init+0x6a): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o: in function `MX_USART2_UART_Init':
+C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:54:(.text.MX_USART2_UART_Init+0x54): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:58:(.text.MX_USART2_UART_Init+0x66): undefined reference to `Error_Handler'
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/usart.o:C:/Users/ramekp/Desktop/STM32_Projects/Version_1_19/BareMetal_SPI_ADXL345/BareMetal_SPI_ADXL345/Debug/../Core/Src/usart.c:62: more undefined references to `Error_Handler' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: BareMetal_SPI_ADXL345.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+13:05:59 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BareMetal_SPI_ADXL345.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\ramekp\Desktop\STM32_Projects\Version_1_19\BareMetal_SPI_ADXL345\BareMetal_SPI_ADXL345\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BareMetal_SPI_ADXL345.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BareMetal_SPI_ADXL345.elf
+ 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+arm-none-eabi-objdump -h -S BareMetal_SPI_ADXL345.elf  > "BareMetal_SPI_ADXL345.list"
+   text	   data	    bss	    dec	    hex	filename
+  19636	     92	   2164	  21892	   5584	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 
+Finished building: BareMetal_SPI_ADXL345.list
+ 
+13:06:45 **** Incremental Build of configuration Debug for project BareMetal_SPI_ADXL345 ****
+make -j12 all 
+arm-none-eabi-size  BareMetal_SPI_ADXL345.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19636	     92	   2164	  21892	   5584	BareMetal_SPI_ADXL345.elf
+Finished building: default.size.stdout
+ 

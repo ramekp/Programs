@@ -1,0 +1,7 @@
+../Core/Src/adxl345.c:20:20:CS_Low	8	static
+../Core/Src/adxl345.c:24:20:CS_High	8	static
+../Core/Src/adxl345.c:28:26:adxl_write	40	static
+../Core/Src/adxl345.c:36:26:adxl_read	40	static
+../Core/Src/adxl345.c:45:26:adxl_read_multi	40	static
+../Core/Src/adxl345.c:54:19:ADXL345_Init	32	static
+../Core/Src/adxl345.c:72:19:ADXL345_ReadXYZ	32	static

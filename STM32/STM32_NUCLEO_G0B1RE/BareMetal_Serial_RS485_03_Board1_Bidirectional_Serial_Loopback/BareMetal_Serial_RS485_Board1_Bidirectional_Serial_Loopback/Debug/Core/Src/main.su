@@ -1,0 +1,6 @@
+../Core/Src/main.c:67:13:led_task_500ms	16	static
+../Core/Src/main.c:76:13:uart2_print	16	static
+../Core/Src/main.c:80:26:uart_receive_exact	40	static
+../Core/Src/main.c:91:5:main	16	static
+../Core/Src/main.c:123:6:SystemClock_Config	96	static
+../Core/Src/main.c:167:6:Error_Handler	8	static,ignoring_inline_asm
